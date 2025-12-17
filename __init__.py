@@ -40,6 +40,7 @@ try:
     from r_selenium.webdriver.support.ui import WebDriverWait
     from r_selenium.webdriver.support import expected_conditions as EC
     import r_seleniumbase.core.browser_launcher as launcher
+    from pathlib import Path
     from time import sleep
 except Exception as e:
     import traceback
@@ -69,7 +70,11 @@ if module == "open_browser":
     download_dir = GetParams("download_dir")
     try:
         from r_seleniumbase.core import download_helper
-        download_helper.set_downloads_folder(download_dir)
+
+        if download_dir:
+            download_helper.set_downloads_folder(download_dir)
+        else:
+            download_helper.set_downloads_folder(str(Path.home() / "Downloads"))
         
         mod_cloudfare = Driver(uc=True)
         mod_cloudfare.maximize_window()
