@@ -66,17 +66,11 @@ if module == "open_browser":
     session = GetParams("session")
     r= int(GetParams("retries") if GetParams("retries") else 1)
     var_ = GetParams("var")
-
-    try:        
-        import r_selenium as _sel
-        import r_seleniumbase as _sb
-
-        print(
-            f"[diag] selenium={getattr(_sel, '__version__', 'unknown')} "
-            f"({getattr(_sel, '__file__', 'unknown')}) | "
-            f"seleniumbase={getattr(_sb, '__version__', 'unknown')} "
-            f"({getattr(_sb, '__file__', 'unknown')})"
-        )
+    download_dir = GetParams("download_dir")
+    try:
+        from r_seleniumbase.core import download_helper
+        download_helper.set_downloads_folder(download_dir)
+        
         mod_cloudfare = Driver(uc=True)
         mod_cloudfare.maximize_window()
         sleep(1)

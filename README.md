@@ -4,7 +4,7 @@
 
 # OpenCloudfare
   
-Module to open Google Chrome and solve the Cloudfare Turnstile captcha  
+Module to open Google Chrome and solve the Cloudfare Turnstile captcha.  
 
 *Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
