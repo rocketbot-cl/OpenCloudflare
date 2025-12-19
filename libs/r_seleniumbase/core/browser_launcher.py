@@ -2152,7 +2152,9 @@ def _set_chrome_options(
     elif browser_name == constants.Browser.EDGE:
         chrome_options = webdriver.edge.options.Options()
     prefs = {}
-    prefs["download.default_directory"] = downloads_path
+    from r_seleniumbase.core.download_helper import get_downloads_folder
+    download_dir = get_downloads_folder()
+    prefs["download.default_directory"] = download_dir #downloads_path
     prefs["download.directory_upgrade"] = True
     prefs["download.prompt_for_download"] = False
     prefs["download_bubble.partial_view_enabled"] = False

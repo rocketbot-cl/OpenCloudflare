@@ -2,7 +2,7 @@
     "author": "Corina Suarez",
     "description": "Module to open Google Chrome and solve the Cloudfare Turnstile captcha",
     "description_lang": {
-        "en": "Module to open Google Chrome and solve the Cloudfare Turnstile captcha",
+        "en": "Module to open Google Chrome and solve the Cloudfare Turnstile captcha.",
         "es": "Módulo para abrir Google Chrome y resolver el captcha Cloudfare Turnstile.",
         "pr": "Módulo para abrir o Google Chrome e resolver o captcha Cloudfare Turnstile."
     },
@@ -14,7 +14,7 @@
     "mac": false,
     "docker": false,
     "name": "OpenCloudfare",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "dependencies": {},
     "title": {
         "en": "OpenCloudfare",
@@ -80,6 +80,27 @@
                         "id": "retries",
                         "css": "col-md-4",
                         "data_type": "str",
+                        "required": false
+                    },
+                    {
+                        "type": "folder_select",
+                        "placeholder": {
+                            "es": "C:/Users/User/Downloads",
+                            "en": "C:/Users/User/Downloads",
+                            "pr": "C:/Users/User/Downloads"
+                        },
+                        "description": {
+                            "es": "Ruta hacia la carpeta donde se guardarán las descargas.",
+                            "en": "Path to the folder where downloads will be saved.",
+                            "pr": "Caminho para a pasta onde os downloads serão salvos."
+                        },
+                        "title": {
+                            "es": "Carpeta de Descargas",
+                            "en": "Download Folder",
+                            "pr": "Pasta de Downloads"
+                        },
+                        "id": "download_dir",
+                        "css": "col-md-12",
                         "required": false
                     },
                     {

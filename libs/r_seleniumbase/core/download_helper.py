@@ -10,18 +10,23 @@ from r_seleniumbase.fixtures import constants
 #                             or self.save_file_as(file_url, new_file_name)
 # The "downloads_folder" is cleaned out at the start of each pytest run,
 #     but there is an option to save existing files in "archived_files".
-DOWNLOADS_DIR = constants.Files.DOWNLOADS_FOLDER
-abs_path = os.path.abspath(".")
-downloads_path = os.path.join(abs_path, DOWNLOADS_DIR)
 
+DOWNLOADS_DIR = constants.Files.DOWNLOADS_FOLDER
+_CUSTOM_DOWNLOADS_PATH = None
+
+def set_downloads_folder(folder_path: str):
+    global _CUSTOM_DOWNLOADS_PATH
+    _CUSTOM_DOWNLOADS_PATH = os.path.abspath(folder_path)
 
 def get_downloads_folder():
-    return downloads_path
-
+    if _CUSTOM_DOWNLOADS_PATH:
+        return _CUSTOM_DOWNLOADS_PATH
+    return os.path.join(os.getcwd(), DOWNLOADS_DIR)
 
 def reset_downloads_folder():
     """Clears the downloads folder.
     If settings.ARCHIVE_EXISTING_DOWNLOADS is set to True, archives it."""
+    downloads_path = get_downloads_folder()  # path to downloads folder
     downloads_dir = constants.Files.DOWNLOADS_FOLDER
     archive_dir = constants.Files.ARCHIVED_DOWNLOADS_FOLDER
     if downloads_dir.endswith("/"):
@@ -36,7 +41,7 @@ def reset_downloads_folder():
         return  # Prevent accidental deletions if constants are renamed
     archived_downloads_folder = os.path.join(os.getcwd(), archive_dir) + os.sep
     if os.path.exists(downloads_path) and not os.listdir(downloads_path) == []:
-        reset_downloads_folder_assistant(archived_downloads_folder)
+        reset_downloads_folder_assistant(archived_downloads_folder, downloads_path)
     if os.path.exists(downloads_path) and os.listdir(downloads_path) == []:
         try:
             os.rmdir(downloads_path)
@@ -52,7 +57,9 @@ def reset_downloads_folder():
             pass
 
 
-def reset_downloads_folder_assistant(archived_downloads_folder):
+def reset_downloads_folder_assistant(archived_downloads_folder, downloads_path=None):
+    if downloads_path is None:
+        downloads_path = get_downloads_folder()
     if not os.path.exists(archived_downloads_folder):
         try:
             os.makedirs(archived_downloads_folder, exist_ok=True)

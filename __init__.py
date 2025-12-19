@@ -40,6 +40,7 @@ try:
     from r_selenium.webdriver.support.ui import WebDriverWait
     from r_selenium.webdriver.support import expected_conditions as EC
     import r_seleniumbase.core.browser_launcher as launcher
+    from pathlib import Path
     from time import sleep
 except Exception as e:
     import traceback
@@ -66,17 +67,15 @@ if module == "open_browser":
     session = GetParams("session")
     r= int(GetParams("retries") if GetParams("retries") else 1)
     var_ = GetParams("var")
+    download_dir = GetParams("download_dir")
+    try:
+        from r_seleniumbase.core import download_helper
 
-    try:        
-        import r_selenium as _sel
-        import r_seleniumbase as _sb
-
-        print(
-            f"[diag] selenium={getattr(_sel, '__version__', 'unknown')} "
-            f"({getattr(_sel, '__file__', 'unknown')}) | "
-            f"seleniumbase={getattr(_sb, '__version__', 'unknown')} "
-            f"({getattr(_sb, '__file__', 'unknown')})"
-        )
+        if download_dir:
+            download_helper.set_downloads_folder(download_dir)
+        else:
+            download_helper.set_downloads_folder(str(Path.home() / "Downloads"))
+        
         mod_cloudfare = Driver(uc=True)
         mod_cloudfare.maximize_window()
         sleep(1)
