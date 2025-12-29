@@ -28,7 +28,7 @@ import sys
 import os
 
 base_path = tmp_global_obj["basepath"] # type: ignore
-cur_path = os.path.join(base_path, 'modules', 'OpenCloudfare', 'libs')
+cur_path = os.path.join(base_path, 'modules', 'OpenCloudflare', 'libs')
 
 if cur_path not in sys.path:
     sys.path.append(cur_path)

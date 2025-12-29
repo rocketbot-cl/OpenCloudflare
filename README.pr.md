@@ -2,9 +2,9 @@
 
 
 
-# OpenCloudfare
+# OpenCloudflare
   
-Módulo para abrir o Google Chrome e resolver o captcha Cloudfare Turnstile.  
+Módulo para abrir o Google Chrome e resolver o captcha Cloudflare Turnstile.  
 
 *Read this in other languages: [English](README.md), [Português](README.pr.md), [Español](README.es.md)*
 
