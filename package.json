@@ -14,7 +14,7 @@
     "mac": false,
     "docker": false,
     "name": "OpenCloudflare",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "dependencies": {},
     "title": {
         "en": "OpenCloudflare",
@@ -101,6 +101,50 @@
                         },
                         "id": "download_dir",
                         "css": "col-md-12",
+                        "required": false
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "1080",
+                            "en": "1080",
+                            "pr": "1080"
+                        },
+                        "description": {
+                            "es": "Altura de la ventana del navegador en píxeles. Será usado si ocurre un error al maximizar la ventana.",
+                            "en": "Browser window height in pixels. Will be used if an error occurs when maximizing the window.",
+                            "pr": "Altura da janela do navegador em pixels. Será usado se ocorrer um erro ao maximizar a janela."
+                        },
+                        "title": {
+                            "es": "Alto",
+                            "en": "Height",
+                            "pr": "Altura"
+                        },
+                        "id": "height",
+                        "css": "col-md-6",
+                        "data_type": "str",
+                        "required": false
+                    },
+                    {
+                        "type": "input",
+                        "placeholder": {
+                            "es": "1920",
+                            "en": "1920",
+                            "pr": "1920"
+                        },
+                        "description": {
+                            "es": "Ancho de la ventana del navegador en píxeles. Será usado si ocurre un error al maximizar la ventana.",
+                            "en": "Browser window width in pixels. Will be used if an error occurs when maximizing the window.",
+                            "pr": "Largura da janela do navegador em pixels. Será usado se ocorrer um erro ao maximizar a janela."
+                        },
+                        "title": {
+                            "es": "Ancho",
+                            "en": "Width",
+                            "pr": "Largura"
+                        },
+                        "id": "width",
+                        "css": "col-md-6",
+                        "data_type": "str",
                         "required": false
                     },
                     {

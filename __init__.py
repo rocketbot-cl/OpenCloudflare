@@ -62,12 +62,22 @@ if not session:
     session = 'default'
 
 
+def is_a_maximize_error(error):
+    error_text = str(error)
+    return (
+        '"code":-32000' in error_text
+        and '"Browser window not found"' in error_text
+    )
+
+
 if module == "open_browser":
     url_ = GetParams("url")
     session = GetParams("session")
     r= int(GetParams("retries") if GetParams("retries") else 1)
     var_ = GetParams("var")
     download_dir = GetParams("download_dir")
+    height = GetParams("height") or "1080"
+    width = GetParams("width") or "1920"
     try:
         from r_seleniumbase.core import download_helper
 
@@ -77,9 +87,23 @@ if module == "open_browser":
             download_helper.set_downloads_folder(str(Path.home() / "Downloads"))
         
         mod_cloudfare = Driver(uc=True)
-        mod_cloudfare.maximize_window()
-        sleep(1)
+
+        try:
+            mod_cloudfare.maximize_window()
+            sleep(1)
+        except Exception as e:
+            print("An error has occurred while trying to maximize the window")
+            if is_a_maximize_error(e):
+                try:
+                    mod_cloudfare.set_window_size(int(width), int(height))
+                    sleep(1)
+                except Exception:
+                    print("An error has occurred while trying to set the window's size")
+            else:
+                raise
+
         mod_cloudfare.uc_open_with_reconnect(url_, r)
+
         web.driver_list[session] = mod_cloudfare
         web.driver_actual_id = session
         
