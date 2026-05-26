@@ -86,7 +86,7 @@ if module == "open_browser":
         else:
             download_helper.set_downloads_folder(str(Path.home() / "Downloads"))
         
-        mod_cloudfare = Driver(uc=True, external_pdf=True)
+        mod_cloudfare = Driver(uc=True)
 
         try:
             mod_cloudfare.maximize_window()
