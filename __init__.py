@@ -90,11 +90,13 @@ if module == "open_browser":
 
         try:
             mod_cloudfare.maximize_window()
+            sleep(1)
         except Exception as e:
             print("An error has occurred while trying to maximize the window")
             if is_a_maximize_error(e):
                 try:
                     mod_cloudfare.set_window_size(int(width), int(height))
+                    sleep(1)
                 except Exception:
                     print("An error has occurred while trying to set the window's size")
             else:
